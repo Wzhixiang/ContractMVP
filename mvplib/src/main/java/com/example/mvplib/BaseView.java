@@ -8,6 +8,5 @@ package com.example.mvplib;
 
 public interface BaseView {
     void showProgress();
-
     void hideProgress();
 }

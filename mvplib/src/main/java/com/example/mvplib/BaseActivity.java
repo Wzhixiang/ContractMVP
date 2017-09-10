@@ -20,14 +20,20 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
 
         mPresenter=createPresenter();//创建presenter
 
-        initVariables();
         initViews(savedInstanceState);
     }
 
     protected void onResume(){
         super.onResume();
         mPresenter.attachView((V)this);
-        loadData();
+        if(mPresenter.isViewAttached())
+            loadData();
+    }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        mPresenter.dispose();
     }
 
     @Override
@@ -36,8 +42,6 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
         mPresenter.detachView();
     }
 
-    //初始化变量，接受其他页面传递的参数
-    protected abstract void initVariables();
     protected abstract int getLayoutID();
     //初始化布局文件、控件
     protected abstract void initViews(Bundle savedInstanceState);

@@ -1,4 +1,4 @@
-package com.wzx.contractmvp.view;
+package com.wzx.contractmvp.view.ui;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -14,11 +14,6 @@ import com.wzx.contractmvp.presenter.PresenterMain;
 public class MainActivity extends BaseActivity<ContractMain.MView, PresenterMain> implements ContractMain.MView {
 
     private TextView textView;
-
-    @Override
-    protected void initVariables() {
-
-    }
 
     @Override
     protected int getLayoutID() {

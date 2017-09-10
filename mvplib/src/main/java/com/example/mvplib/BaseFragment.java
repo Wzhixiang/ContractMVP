@@ -22,8 +22,6 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = createPresenter();//创建presenter
-
-        initVariables();
     }
 
     @Nullable
@@ -39,7 +37,14 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
     public void onResume() {
         super.onResume();
         mPresenter.attachView((V) this);
-        loadData();
+        if(mPresenter.isViewAttached()){
+            loadData();
+        }
+    }
+
+    public void onPause(){
+        super.onPause();
+        mPresenter.dispose();
     }
 
     @Override
@@ -47,8 +52,6 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
         super.onDestroy();
         mPresenter.detachView();
     }
-
-    protected abstract void initVariables();
 
     protected abstract int getLayoutID();
 
