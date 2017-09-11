@@ -1,4 +1,4 @@
-package com.example.mvplib;
+package com.wzx.contractmvp;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
@@ -12,6 +12,7 @@ import io.reactivex.disposables.Disposable;
  * version 1.0
  */
 
+@SuppressWarnings("unchecked")
 public abstract class BasePresenter<V> {
 
     protected Reference<V> mViewRef;//View接口类型的弱引用

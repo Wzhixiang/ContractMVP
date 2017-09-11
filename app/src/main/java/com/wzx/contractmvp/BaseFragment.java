@@ -1,4 +1,4 @@
-package com.example.mvplib;
+package com.wzx.contractmvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,12 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 /**
  * 描述 TODO
  * Created by 王治湘 on 2017/8/21.
  * version 1.0
  */
 
+@SuppressWarnings("unchecked")
 public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragment {
 
     protected P mPresenter;
@@ -36,10 +38,10 @@ public abstract class BaseFragment<V, P extends BasePresenter<V>> extends Fragme
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.attachView((V) this);
-        if(mPresenter.isViewAttached()){
-            loadData();
+        if(!mPresenter.isViewAttached()){
+            mPresenter.attachView((V) this);
         }
+        loadData();
     }
 
     public void onPause(){

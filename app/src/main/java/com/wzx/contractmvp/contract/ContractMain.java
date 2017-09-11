@@ -1,6 +1,9 @@
 package com.wzx.contractmvp.contract;
 
-import com.example.mvplib.BaseView;
+import com.wzx.contractmvp.BaseView;
+import com.wzx.contractmvp.model.bean.ZhihuStory;
+
+import java.util.ArrayList;
 
 /**
  * 描述 TODO
@@ -11,10 +14,11 @@ import com.example.mvplib.BaseView;
 public interface ContractMain {
 
     interface MView extends BaseView {
-        void showText(String string);
+        void getStorysSuccess(ArrayList<ZhihuStory> stories);
+        void getStorysFail(String msg);
     }
 
     interface MPresenter {
-        void requestText();
+        void requestStorys();
     }
 }
