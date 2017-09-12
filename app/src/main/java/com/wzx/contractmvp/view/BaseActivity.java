@@ -1,7 +1,9 @@
-package com.wzx.contractmvp;
+package com.wzx.contractmvp.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.wzx.contractmvp.presenter.BasePresenter;
 
 
 /**
@@ -34,7 +36,7 @@ public abstract class BaseActivity<V, P extends BasePresenter<V>> extends AppCom
     @Override
     protected void onPause() {
         super.onPause();
-        mPresenter.dispose();
+        mPresenter.clearDisposable();
     }
 
     @Override

@@ -1,9 +1,7 @@
 package com.wzx.contractmvp.contract;
 
-import com.wzx.contractmvp.BaseView;
-import com.wzx.contractmvp.model.bean.ZhihuStory;
-
-import java.util.ArrayList;
+import com.wzx.contractmvp.interfaces.IBaseView;
+import com.wzx.contractmvp.model.bean.ZhiHuDaily;
 
 /**
  * 描述 TODO
@@ -13,8 +11,8 @@ import java.util.ArrayList;
 
 public interface ContractMain {
 
-    interface MView extends BaseView {
-        void getStorysSuccess(ArrayList<ZhihuStory> stories);
+    interface MView extends IBaseView {
+        void getStorysSuccess(ZhiHuDaily zhiHuDaily);
         void getStorysFail(String msg);
     }
 

@@ -1,16 +1,14 @@
 package com.wzx.contractmvp.presenter;
 
-import com.wzx.contractmvp.BasePresenter;
 import com.wzx.contractmvp.contract.ContractMain;
 import com.wzx.contractmvp.model.api.RetrofitAPIManager;
+import com.wzx.contractmvp.model.bean.ZhiHuDaily;
 import com.wzx.contractmvp.model.bean.ZhihuStory;
 
 import java.util.ArrayList;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
@@ -64,18 +62,19 @@ public class MainPresent extends BasePresenter<ContractMain.MView> implements Co
         //绑定观察对象，注意在界面的ondestory或者onpouse方法中调用presenter.unsubcription();
         addDisposable(
                 RetrofitAPIManager.getInstence().provideClientApi().getZhihuDaily()
-                .map(zhiHuDaily -> {
-                    ArrayList<ZhihuStory> stories = zhiHuDaily.getStories();
-                    return stories;
-                })
+//                .map(zhiHuDaily -> {
+//                    //过滤
+//                    ArrayList<ZhihuStory> stories = zhiHuDaily.getStories();
+//                    return stories;
+//                })
                 //设置事件触发在非主线程
                 .subscribeOn(Schedulers.io())
                 //设置事件接受在UI线程以达到UI显示的目的
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableObserver<ArrayList<ZhihuStory>>() {
+                .subscribeWith(new DisposableObserver<ZhiHuDaily>() {
                     @Override
-                    public void onNext(@NonNull ArrayList<ZhihuStory> zhihuStories) {
-                        mViewRef.get().getStorysSuccess(zhihuStories);
+                    public void onNext(@NonNull ZhiHuDaily zhiHuDaily) {
+                        mViewRef.get().getStorysSuccess(zhiHuDaily);
                     }
 
                     @Override

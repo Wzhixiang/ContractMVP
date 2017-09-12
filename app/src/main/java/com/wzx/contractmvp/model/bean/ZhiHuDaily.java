@@ -27,6 +27,8 @@ public class ZhiHuDaily {
     @SerializedName("stories")
     private ArrayList<ZhihuStory> stories;
 
+    private ArrayList<TopStories> top_stories;
+
     public String getDate() {
         return date;
     }
@@ -43,4 +45,11 @@ public class ZhiHuDaily {
         this.stories = stories;
     }
 
+    public ArrayList<TopStories> getTop_stories() {
+        return top_stories;
+    }
+
+    public void setTop_stories(ArrayList<TopStories> top_stories) {
+        this.top_stories = top_stories;
+    }
 }

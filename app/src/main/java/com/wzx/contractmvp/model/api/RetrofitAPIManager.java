@@ -5,7 +5,7 @@ import com.franmontiel.persistentcookiejar.PersistentCookieJar;
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.google.gson.GsonBuilder;
-import com.wzx.contractmvp.Constants;
+import com.wzx.contractmvp.model.Constants;
 import com.wzx.contractmvp.MyApplication;
 
 import okhttp3.OkHttpClient;

@@ -1,4 +1,4 @@
-package com.wzx.contractmvp;
+package com.wzx.contractmvp.presenter;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
@@ -34,6 +34,15 @@ public abstract class BasePresenter<V> {
             mCompositeDisposable = new CompositeDisposable();
         }
         mCompositeDisposable.add(disposable);
+    }
+
+    /**
+     * 清楚绑定观察者
+     */
+    public void clearDisposable(){
+        if (mCompositeDisposable != null && !mCompositeDisposable.isDisposed()) {
+            mCompositeDisposable.clear();
+        }
     }
 
     //在界面退出等需要解绑观察者的情况下调用此方法统一解绑，防止Rx造成的内存泄漏

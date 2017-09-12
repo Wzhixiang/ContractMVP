@@ -1,4 +1,4 @@
-package com.wzx.contractmvp;
+package com.wzx.contractmvp.interfaces;
 
 /**
  * 描述 TODO
@@ -6,7 +6,7 @@ package com.wzx.contractmvp;
  * version 1.0
  */
 
-public interface BaseView {
+public interface IBaseView {
     void showProgress();
     void hideProgress();
 }

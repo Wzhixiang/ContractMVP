@@ -1,4 +1,4 @@
-package com.wzx.contractmvp;
+package com.wzx.contractmvp.model;
 
 /**
  * 描述 TODO
