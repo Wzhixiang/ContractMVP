@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wzx.contractmvp.widget.DropMenuView
+        android:id="@+id/dropmenuview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:dddividerColor="#c9c9c9"
+        app:ddmaskColor="#00c9c9c9"
+        app:ddmenuBackgroundColor="@android:color/white"
+        app:ddmenuMenuHeightPercent="1"
+        app:ddmenuSelectedIcon="@drawable/ic_selected"
+        app:ddmenuUnselectedIcon="@drawable/ic_unselected"
+        app:ddmenuTextSize="13sp"
+        app:ddtextSelectedColor="@color/colorPrimary"
+        app:ddtextUnselectedColor="#c9c9c9"
+        app:ddunderlineColor="#c9c9c9" />
+
+    <com.wzx.contractmvp.widget.TabView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="3dp"
+        android:layout_margin="10dp"
+        android:text="状态"
+        android:textColor="@android:color/black"
+        app:bottomLineColor="@android:color/holo_red_dark"/>
+
+</LinearLayout>

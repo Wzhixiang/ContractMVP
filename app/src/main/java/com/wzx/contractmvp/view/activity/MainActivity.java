@@ -1,4 +1,4 @@
-package com.wzx.contractmvp.view.ui;
+package com.wzx.contractmvp.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +18,6 @@ import com.wzx.contractmvp.utils.SnackBarUtils;
 import com.wzx.contractmvp.view.BaseActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
-import com.youth.banner.listener.OnBannerListener;
 
 import java.util.ArrayList;
 import java.util.List;

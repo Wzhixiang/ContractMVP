@@ -1,4 +1,4 @@
-package com.wzx.contractmvp.view.ui;
+package com.wzx.contractmvp.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
