@@ -10,16 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        app:dddividerColor="#c9c9c9"
-        app:ddmaskColor="#00c9c9c9"
-        app:ddmenuBackgroundColor="@android:color/white"
-        app:ddmenuMenuHeightPercent="1"
-        app:ddmenuSelectedIcon="@drawable/ic_selected"
-        app:ddmenuUnselectedIcon="@drawable/ic_unselected"
-        app:ddmenuTextSize="13sp"
-        app:ddtextSelectedColor="@color/colorPrimary"
-        app:ddtextUnselectedColor="#c9c9c9"
-        app:ddunderlineColor="#c9c9c9" />
+        app:tabDividerColor="#c9c9c9"
+        app:menuDividerColor="#c9c9c9"
+        app:maskColor="#00c9c9c9"
+        app:menuHeightPercent="1"
+        app:menuBackgroundColor="@android:color/white"
+        app:tabTextSize="13sp"
+        app:tabTextColorSelected="@color/colorPrimary"
+        app:tabTextColorUnselected="#c9c9c9"
+        app:tabSelectedIcon="@drawable/ic_selected"
+        app:tabUnselectedIcon="@drawable/ic_unselected"
+        app:tabHeight="36dp"
+        app:indicatorHeight="1dp"/>
 
     <com.wzx.contractmvp.widget.TabView
         android:layout_width="wrap_content"

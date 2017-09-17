@@ -3,22 +3,25 @@
 
     <!--自定义多条件筛选下拉view-->
     <declare-styleable name="DropMenuView">
-        <attr name="ddunderlineColor" format="color"/>
-        <attr name="dddividerColor" format="color"/>
-        <attr name="ddtextSelectedColor" format="color"/>
-        <attr name="ddtextUnselectedColor" format="color"/>
-        <attr name="ddmenuBackgroundColor" format="color"/>
-        <attr name="ddmaskColor" format="color"/>
-        <attr name="ddmenuTextSize" format="dimension"/>
-        <attr name="ddmenuSelectedIcon" format="reference"/>
-        <attr name="ddmenuUnselectedIcon" format="reference"/>
-        <attr name="ddmenuMenuHeightPercent" format="float"/>
-        <attr name="ddtabHeight" format="dimension"/>
+        <attr name="menuDividerColor" format="color" />
+        <attr name="tabDividerColor" format="color" />
+        <attr name="tabTextColorSelected" format="color" />
+        <attr name="tabTextColorUnselected" format="color" />
+        <attr name="menuBackgroundColor" format="color" />
+        <attr name="maskColor" format="color" />
+        <attr name="tabTextSize" format="dimension" />
+        <attr name="tabSelectedIcon" format="reference" />
+        <attr name="tabUnselectedIcon" format="reference" />
+        <attr name="menuHeightPercent" format="float" />
+        <attr name="tabHeight" format="dimension" />
+        <attr name="indicatorHeight" format="dimension" />
+        <attr name="indicatorSelectedColor" format="color" />
+        <attr name="indicatorUnSelectedColor" format="color" />
 
     </declare-styleable>
 
     <declare-styleable name="TabView">
-        <attr name="bottomLineColor" format="color"/>
+        <attr name="bottomLineColor" format="color" />
     </declare-styleable>
 
 </resources>

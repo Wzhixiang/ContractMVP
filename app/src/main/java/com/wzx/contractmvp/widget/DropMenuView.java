@@ -3,12 +3,10 @@ package com.wzx.contractmvp.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +14,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wzx.contractmvp.R;
@@ -62,8 +59,13 @@ public class DropMenuView extends LinearLayout {
 
     private float menuHeighPercent = 0.5f;
 
-    private int tabheight = dpTpPx(36);//tabheight默认36dp
+    private int tabheight = dpTpPx(36);//tabheight默认36px
 
+    private int defaultSelectdColor = ContextCompat.getColor(getContext(), R.color.colorAccent);
+    private int defaultUnSelectdColor = ContextCompat.getColor(getContext(), android.R.color.transparent);
+    private int indicatorHeight;
+    private int indicatorSelectedColor;
+    private int indicatorUnselectedColor;
 
     public DropMenuView(Context context) {
         super(context, null);
@@ -82,18 +84,20 @@ public class DropMenuView extends LinearLayout {
         int menuBackgroundColor = 0xffffffff;
         int underlineColor = 0xffcccccc;
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.DropMenuView);
-        underlineColor = a.getColor(R.styleable.DropMenuView_ddunderlineColor, underlineColor);
-        dividerColor = a.getColor(R.styleable.DropMenuView_dddividerColor, dividerColor);
-        textSelectedColor = a.getColor(R.styleable.DropMenuView_ddtextSelectedColor, textSelectedColor);
-        textUnselectedColor = a.getColor(R.styleable.DropMenuView_ddtextUnselectedColor, textUnselectedColor);
-        menuBackgroundColor = a.getColor(R.styleable.DropMenuView_ddmenuBackgroundColor, menuBackgroundColor);
-        maskColor = a.getColor(R.styleable.DropMenuView_ddmaskColor, maskColor);
-        menuTextSize = a.getDimensionPixelSize(R.styleable.DropMenuView_ddmenuTextSize, menuTextSize);
-        menuSelectedIcon = a.getResourceId(R.styleable.DropMenuView_ddmenuSelectedIcon, menuSelectedIcon);
-        menuUnselectedIcon = a.getResourceId(R.styleable.DropMenuView_ddmenuUnselectedIcon, menuUnselectedIcon);
-        menuHeighPercent = a.getFloat(R.styleable.DropMenuView_ddmenuMenuHeightPercent, menuHeighPercent);
-        tabheight = a.getDimensionPixelSize(R.styleable.DropMenuView_ddtabHeight, tabheight);
-        Log.d("自定义view",""+tabheight);
+        underlineColor = a.getColor(R.styleable.DropMenuView_menuDividerColor, underlineColor);
+        dividerColor = a.getColor(R.styleable.DropMenuView_tabDividerColor, dividerColor);
+        textSelectedColor = a.getColor(R.styleable.DropMenuView_tabTextColorSelected, textSelectedColor);
+        textUnselectedColor = a.getColor(R.styleable.DropMenuView_tabTextColorUnselected, textUnselectedColor);
+        menuBackgroundColor = a.getColor(R.styleable.DropMenuView_menuBackgroundColor, menuBackgroundColor);
+        maskColor = a.getColor(R.styleable.DropMenuView_maskColor, maskColor);
+        menuTextSize = a.getDimensionPixelSize(R.styleable.DropMenuView_tabTextSize, menuTextSize);
+        menuSelectedIcon = a.getResourceId(R.styleable.DropMenuView_tabSelectedIcon, menuSelectedIcon);
+        menuUnselectedIcon = a.getResourceId(R.styleable.DropMenuView_tabUnselectedIcon, menuUnselectedIcon);
+        menuHeighPercent = a.getFloat(R.styleable.DropMenuView_menuHeightPercent, menuHeighPercent);
+        tabheight = a.getDimensionPixelSize(R.styleable.DropMenuView_tabHeight, tabheight);
+        indicatorHeight = a.getDimensionPixelSize(R.styleable.DropMenuView_indicatorHeight, tabheight);
+        indicatorSelectedColor = a.getColor(R.styleable.DropMenuView_indicatorSelectedColor, defaultSelectdColor);
+        indicatorUnselectedColor = a.getColor(R.styleable.DropMenuView_indicatorUnSelectedColor, defaultUnSelectdColor);
 
         a.recycle();
 
@@ -172,7 +176,6 @@ public class DropMenuView extends LinearLayout {
         tabView.setOrientation(HORIZONTAL);
         tabView.setGravity(CENTER);
 
-
         TextView title = new TextView(getContext());
         title.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, tabheight));
         title.setSingleLine();
@@ -183,10 +186,13 @@ public class DropMenuView extends LinearLayout {
         title.setPadding(dpTpPx(5), dpTpPx(3), dpTpPx(5), dpTpPx(3));
         title.setText(tabTexts.get(i));
 
+//        title.setBackground(new IndicatorDrawable(title, indicatorUnselectedColor));
+
         ImageView state = new ImageView(getContext());
         state.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         state.setImageDrawable(ContextCompat.getDrawable(getContext(), menuUnselectedIcon));
         state.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
         tabView.addView(title);
         tabView.addView(state);
 
@@ -231,6 +237,7 @@ public class DropMenuView extends LinearLayout {
         if (current_tab_position != -1) {
             LinearLayout tab = (LinearLayout) tabMenuView.getChildAt(current_tab_position);
             ((TextView) tab.getChildAt(0)).setTextColor(textUnselectedColor);
+            tab.getChildAt(0).setBackground(new IndicatorDrawable(tab.getChildAt(0), 0x00ffffff));
             ((ImageView) tab.getChildAt(1)).setImageDrawable(ContextCompat.getDrawable(getContext(), menuUnselectedIcon));
 
             popupMenuViews.setVisibility(View.GONE);
@@ -276,11 +283,13 @@ public class DropMenuView extends LinearLayout {
 
                     LinearLayout tab = (LinearLayout) tabMenuView.getChildAt(i);
                     ((TextView) tab.getChildAt(0)).setTextColor(textSelectedColor);
+                    tab.getChildAt(0).setBackground(new IndicatorDrawable(tab.getChildAt(0), indicatorSelectedColor, indicatorHeight));
                     ((ImageView) tab.getChildAt(1)).setImageDrawable(ContextCompat.getDrawable(getContext(), menuSelectedIcon));
                 }
             } else {
                 LinearLayout tab = (LinearLayout) tabMenuView.getChildAt(i);
                 ((TextView) tab.getChildAt(0)).setTextColor(textUnselectedColor);
+                tab.getChildAt(0).setBackground(new IndicatorDrawable(tab.getChildAt(0), indicatorUnselectedColor, indicatorHeight));
                 ((ImageView) tab.getChildAt(1)).setImageDrawable(ContextCompat.getDrawable(getContext(), menuUnselectedIcon));
 
                 popupMenuViews.getChildAt(i / 2).setVisibility(View.GONE);
